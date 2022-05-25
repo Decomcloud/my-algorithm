@@ -1,7 +1,6 @@
 package cloud.ry.day1num1;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Arrays;
 //给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target 的那 两个 整数，并返回它们的数组下标。 
 //
 // 你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。 
@@ -44,41 +43,45 @@ import java.util.Map;
 // 
 //
 // 进阶：你可以想出一个时间复杂度小于 O(n²) 的算法吗？ 
-// Related Topics 数组 哈希表 👍 13136 👎 0
+// Related Topics 数组 哈希表 👍 14489 👎 0
 
-// 哈希表 n
-public class num1TwoSumN {
+public class num1TwoSum_sortBetterSearch {
     public static void main(String[] args) {
-        Solution solution = new num1TwoSumN().new Solution();
-        //System.out.println(solution.twoSum(new int[]{2,5,5,11}, 10));
+        Solution solution = new num1TwoSum_sortBetterSearch().new Solution();
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int[] twoSum(int[] nums, int target) {
+            int[] sortedArray = nums.clone();
+            // n logn
+            Arrays.sort(sortedArray);
+            int left = 0;
+            int right = sortedArray.length - 1;
             int[] ret = new int[2];
-            Map<Integer, Integer> map = new HashMap<>();
-            for (int i = 0; i < nums.length; i++) {
-                // 考虑相同数, 后面会覆盖前面的, 对本题无影响
-                // 1 数组遍历是从前面遍历, 所以不影响,
-                // 2 不要求顺序,就算返回一个最大下标, 一个最小下标也可以
-                //if (map.containsKey(nums[i])) {
-                //	if (nums[i] * 2 == target) {
-                //		ret[0] = i;
-                //		ret[1] = map.get(nums[i]);
-                //		return ret;
-                //	}
-                //}
-                map.put(nums[i], i);
-            }
-            for (int i = 0; i < nums.length; i++) {
-                if (map.containsKey(target - nums[i]) && i != map.get(target - nums[i])) {
-                    return new int[]{i, map.get(target - nums[i])};
+            while (left < right) {
+                if (sortedArray[left] + sortedArray[right] > target) {
+                    right--;
+                } else if (sortedArray[left] + sortedArray[right] < target) {
+                    left++;
+                } else {
+                    ret[0] = getNumberIndex(nums, sortedArray[left], -1);
+                    ret[1] = getNumberIndex(nums, sortedArray[right], ret[0]);
+                    return ret;
                 }
             }
             return ret;
         }
 
+        // 时间复杂度 n
+        public int getNumberIndex(int[] nums, int num, int forbiddenIndex) {
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] == num && i != forbiddenIndex) {
+                    return i;
+                }
+            }
+            return -1;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 

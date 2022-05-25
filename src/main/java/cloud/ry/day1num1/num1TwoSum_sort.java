@@ -46,9 +46,9 @@ import java.util.Arrays;
 // Related Topics 数组 哈希表 👍 13136 👎 0
 
 // 排序 二分法遍历 时间复杂度 nlogn
-public class num1TwoSumNLogN {
+public class num1TwoSum_sort {
     public static void main(String[] args) {
-        Solution solution = new num1TwoSumNLogN().new Solution();
+        Solution solution = new num1TwoSum_sort().new Solution();
         //System.out.println(solution.twoSum(new int[]{2,5,5,11}, 10));
     }
 
