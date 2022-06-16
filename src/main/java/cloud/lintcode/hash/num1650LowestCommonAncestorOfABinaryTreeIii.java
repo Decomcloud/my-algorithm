@@ -1,4 +1,4 @@
-package cloud.lintcode.other;
+package cloud.lintcode.hash;
 
 import java.util.HashSet;
 import java.util.Set;
