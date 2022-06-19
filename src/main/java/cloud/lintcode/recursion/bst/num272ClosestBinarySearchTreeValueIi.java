@@ -1,4 +1,4 @@
-package cloud.lintcode.divide.bst;
+package cloud.lintcode.recursion.bst;
 
 import cloud.lintcode.common.TreeNode;
 

@@ -1,4 +1,4 @@
-package cloud.lintcode.divide;
+package cloud.lintcode.recursion;
 
 import cloud.lintcode.common.TreeNode;
 //给定一棵二叉树的根节点 root，返回给定节点 p 和 q 的最近公共祖先（LCA）节点。如果 p 或 q 之一 不存在 于该二叉树中，返回 null。树中

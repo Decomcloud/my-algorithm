@@ -1,4 +1,4 @@
-package cloud.lintcode.divide;
+package cloud.lintcode.recursion;
 
 import cloud.lintcode.common.TreeNode;
 //给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。 

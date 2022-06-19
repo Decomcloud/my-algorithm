@@ -1,4 +1,4 @@
-package cloud.lintcode.divide.bst;
+package cloud.lintcode.recursion.bst;
 
 import cloud.lintcode.common.TreeNode;
 //给定一个不为空的二叉搜索树和一个目标值 target，请在该二叉搜索树中找到最接近目标值 target 的数值。 

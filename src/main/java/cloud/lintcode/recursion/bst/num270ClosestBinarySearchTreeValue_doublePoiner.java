@@ -1,4 +1,4 @@
-package cloud.lintcode.divide.bst;
+package cloud.lintcode.recursion.bst;
 
 import cloud.lintcode.common.TreeNode;
 //给定一个不为空的二叉搜索树和一个目标值 target，请在该二叉搜索树中找到最接近目标值 target 的数值。
@@ -24,9 +24,9 @@ import cloud.lintcode.common.TreeNode;
 // 
 // Related Topics 树 深度优先搜索 二叉搜索树 二分查找 二叉树 👍 116 👎 0
 
-public class num270ClosestBinarySearchTreeValue_find {
+public class num270ClosestBinarySearchTreeValue_doublePoiner {
     public static void main(String[] args) {
-        Solution solution = new num270ClosestBinarySearchTreeValue_find().new Solution();
+        Solution solution = new num270ClosestBinarySearchTreeValue_doublePoiner().new Solution();
     }
 //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -47,28 +47,24 @@ public class num270ClosestBinarySearchTreeValue_find {
      */
     class Solution {
         public int closestValue(TreeNode root, double target) {
-            return helper(root, target);
-        }
-
-        private Integer helper(TreeNode root, double target) {
             if (root == null) {
-                return null;
+                return 0;
             }
-            Integer left = helper(root.left, target);
-            int min = root.val;
-            if (left != null) {
-                if (Math.abs(min - target) > Math.abs(left - target)) {
-                    min = left;
+            TreeNode upper = root;
+            TreeNode lower = root;
+            while (root != null) {
+                if (root.val < target) {
+                    lower = root;
+                    root = root.right;
+                } else if (root.val > target) {
+                    upper = root;
+                    root = root.left;
+                } else {
+                    return root.val;
                 }
             }
-            Integer right = helper(root.right, target);
-            if (right != null) {
-                if (Math.abs(min - target) > Math.abs(right - target)) {
-                    min = right;
-                }
-            }
-
-            return min;
+            boolean isUpperCase = Math.abs(upper.val - target) <= Math.abs(lower.val - target);
+            return isUpperCase ? upper.val : lower.val;
         }
 
 

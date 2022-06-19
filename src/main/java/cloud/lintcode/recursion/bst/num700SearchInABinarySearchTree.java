@@ -1,4 +1,4 @@
-package cloud.lintcode.divide.bst;
+package cloud.lintcode.recursion.bst;
 
 import cloud.lintcode.common.TreeNode;
 //给定二叉搜索树（BST）的根节点 root 和一个整数值 val。
