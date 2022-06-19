@@ -1,4 +1,4 @@
-package cloud.lintcode;
+package cloud.lintcode.template;
 
 /**
  * @author Yunfeng Sun
