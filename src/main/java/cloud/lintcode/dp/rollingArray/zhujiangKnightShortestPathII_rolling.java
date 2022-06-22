@@ -1,4 +1,4 @@
-package cloud.lintcode.dp;
+package cloud.lintcode.dp.rollingArray;
 
 /**
  * @author Yunfeng Sun
@@ -28,7 +28,7 @@ package cloud.lintcode.dp;
  * Point(int a, int b) { x = a; y = b; }
  * }
  */
-public class zhujiangKnightShortestPathII {
+public class zhujiangKnightShortestPathII_rolling {
     // 4个点, 都向右, 不会有会跳, 如果8个点都能跳就不能用DP, 会形成环
     // 跳到i,j 就是左侧的点可以跳到
     public int shortestPath(boolean[][] grid) {
@@ -42,15 +42,18 @@ public class zhujiangKnightShortestPathII {
         int n = grid.length;
         int m = grid[0].length;
         // 代表从0,0 到i,j的最短路径
-        int[][] dp = new int[n][m];
+        // 只于前2列有关, 所以保存3列
+        int[][] dp = new int[n][3];
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
+            for (int j = 0; j < 3; j++) {
                 dp[i][j] = Integer.MAX_VALUE;
             }
         }
         dp[0][0] = 1;
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
+                // 滚动数组, 进入新行后, 需要初始化新行为最大值
+                dp[i][j % 3] = Integer.MAX_VALUE;
                 // 跳过障碍
                 if (grid[i][j]) {
                     continue;
@@ -67,13 +70,13 @@ public class zhujiangKnightShortestPathII {
                     if (dp[x][y] == Integer.MAX_VALUE) {
                         continue;
                     }
-                    dp[i][j] = Math.min(dp[i][j], dp[x][y] + 1);
+                    dp[i][j] = Math.min(dp[i][j % 3], dp[x][y % 3] + 1);
                 }
             }
         }
-        if (dp[n - 1][m - 1] == Integer.MAX_VALUE) {
+        if (dp[n - 1][(m - 1) % 3] == Integer.MAX_VALUE) {
             return -1;
         }
-        return dp[n - 1][m - 1];
+        return dp[n - 1][(m - 1) % 3];
     }
 }
