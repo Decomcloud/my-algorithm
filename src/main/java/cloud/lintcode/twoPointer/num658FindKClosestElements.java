@@ -50,7 +50,6 @@ public class num658FindKClosestElements {
     class Solution {
         public List<Integer> findClosestElements(int[] arr, int k, int x) {
             int index = findFirstBiggerIndex(arr, x);
-            System.out.println(index);
             if (index == -1) {
                 return null;
             }

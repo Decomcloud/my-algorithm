@@ -65,13 +65,25 @@ public class num215KthLargestElementInAnArray_quickSort {
                     right--;
                 }
             }
+            //// x现在left在右面, rigth在左面
+            //if (k + start - 1 <= right) {
+            //    return quickSelect(nums, start, right, k);
+            //}
+            //
+            //if (k + start - 1 >= left) {
+            //    return quickSelect(nums, left, end, k + start - left);
+            //}
+            //// left 和 right中间可能还有一个数
+            //return nums[right + 1];
+
             // x现在left在右面, rigth在左面
-            if (k + start - 1 <= right) {
+            // 前K个数, 所以index为 k - 1
+            if (k - 1 <= right) {
                 return quickSelect(nums, start, right, k);
             }
 
-            if (k + start - 1 >= left) {
-                return quickSelect(nums, left, end, k + start - left);
+            if (k - 1 >= left) {
+                return quickSelect(nums, left, end, k);
             }
             // left 和 right中间可能还有一个数
             return nums[right + 1];
